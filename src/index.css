@@ -1,111 +1,169 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* ── Custom Theme ── */
+@theme {
+  --color-base: #0B0F19;
+  --color-base-light: #161B28;
+  --color-base-card: #1C2333;
+  --color-base-border: #2D3748;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-accent-indigo: #4F46E5;
+  /* indigo-600 */
+  --color-accent-violet: #7C3AED;
+  /* violet-600 */
+  --color-accent-cyan: #06B6D4;
+  /* cyan-500 */
+  --color-accent-cyan-soft: #22D3EE;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --color-text-primary: #F3F4F6;
+  /* gray-100 */
+  --color-text-secondary: #D1D5DB;
+  /* gray-300 */
+  --color-text-muted: #9CA3AF;
+  /* gray-400 */
+
+  --font-family-heading: "Quicksand", sans-serif;
+  --font-family-body: "Quicksand", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+/* ── Base Reset ── */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
-  margin: 0;
+  font-family: var(--font-family-body);
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* ── Global Container ── */
+.container-global {
+  width: 100%;
+  max-width: 80rem;
+  /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  /* px-6 */
+  padding-right: 1.5rem;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+@media (min-width: 640px) {
+  .container-global {
+    padding-left: 2rem;
+    /* px-8 */
+    padding-right: 2rem;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+
+/* ── Section Rhythm ── */
+.section-spacing {
+  padding-top: 5rem;
+  /* py-20 */
+  padding-bottom: 5rem;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
+/* ── SaaS Specific Components ── */
+.saas-card {
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  /* rounded-2xl */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease-out;
+}
+
+@media (min-width: 1024px) {
+  .saas-card {
+    padding: 2rem;
+  }
+}
+
+.saas-card:hover {
+  transform: translateY(-0.25rem);
+  /* hover:-translate-y-1 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* hover:shadow-lg */
+}
+
+.gradient-primary {
+  background: linear-gradient(to right, #4f46e5, #7c3aed, #06b6d4);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #4f46e5, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Input Styling ── */
+.saas-input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #1F2937;
+  /* gray-800 */
+  border: 1px solid #374151;
+  /* gray-700 */
+  color: white;
+  outline: none;
+  transition: all 0.3s ease-out;
+}
+
+.saas-input:focus {
+  border-color: #6366F1;
+  /* indigo-500 */
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+  /* focus:ring-2 */
+}
+
+/* ── Buttons ── */
+.btn-saas {
   display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  /* px-6 py-3 */
+  font-weight: 500;
+  border-radius: 0.5rem;
+  /* rectangular with slight rounding */
+  transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.btn-saas:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #4f46e5, #7c3aed, #06b6d4);
+  color: white;
+}
+
+.btn-outline {
+  border: 1px solid #374151;
+  color: #D1D5DB;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  border-color: #6366F1;
+  color: white;
+}
+
+/* ── General Utilities ── */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
