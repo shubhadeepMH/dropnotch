@@ -32,7 +32,7 @@ export function Hero() {
                     >
                         We merge high-end product development with expert freelance
                         services to scale your vision into reality. Launching the next
-                        generation of digital excellence.
+                        generation of Products.
                     </motion.p>
 
                     <motion.div
