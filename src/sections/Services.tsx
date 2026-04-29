@@ -15,7 +15,7 @@ const services = [
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
         ),
-        image: image1,
+        image: image2,
     },
     {
         title: 'Digital Design',
@@ -25,7 +25,7 @@ const services = [
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
         ),
-        image: image2,
+        image: image3,
     },
     {
         title: 'Consultancy',
@@ -35,7 +35,7 @@ const services = [
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
         ),
-        image: image3,
+        image: image1,
     },
 ];
 
@@ -63,9 +63,9 @@ export function Services() {
                     >
                         {/* Image Section */}
                         <div className="w-full relative h-48 mb-6 overflow-hidden rounded-xl bg-gray-800/50">
-                            <img 
-                                src={service.image} 
-                                alt={service.title} 
+                            <img
+                                src={service.image}
+                                alt={service.title}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-60"></div>
@@ -75,7 +75,7 @@ export function Services() {
                         <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-600/20 -mt-12 relative z-10 border-4 border-gray-900">
                             {service.icon}
                         </div>
-                        
+
                         <h3 className="mb-3 text-xl font-semibold text-white">
                             {service.title}
                         </h3>
