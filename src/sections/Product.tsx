@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { Button } from '../components/Button';
 import { SectionWrapper } from '../components/SectionWrapper';
 
-import doctorsHomeImg from '../assets/Doctors_Home.png';
-import homeImg from '../assets/Home.png';
-import ratingsImg from '../assets/Ratings.png';
+import doctorsHomeImg from '../assets/Doctors_Home.webp';
+import homeImg from '../assets/Home.webp';
+import ratingsImg from '../assets/Ratings.webp';
 
 export function Product() {
     return (
@@ -49,8 +49,8 @@ export function Product() {
                         {/* Decorative background glow */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-indigo-600/30 blur-[80px] rounded-full z-0 pointer-events-none" />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-cyan-500/20 blur-[60px] rounded-full z-0 pointer-events-none" />
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, y: 50, rotate: -5 }}
                             whileInView={{ opacity: 1, y: 0, rotate: -5 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
@@ -58,8 +58,8 @@ export function Product() {
                         >
                             <img src={homeImg} alt="Drow Home" className="w-full rounded-2xl sm:rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-indigo-500/20 object-cover" />
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
@@ -71,8 +71,8 @@ export function Product() {
                                 Interactive
                             </div>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             initial={{ opacity: 0, y: 50, rotate: 5 }}
                             whileInView={{ opacity: 1, y: 0, rotate: 5 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
