@@ -12,6 +12,13 @@ export function Footer() {
                     <p className="text-sm text-gray-500">
                         &copy; {currentYear} DropNotch Development. All rights reserved.
                     </p>
+                    <span className="hidden md:block h-5 w-px bg-gray-800"></span>
+                    <a
+                        href="/privacy"
+                        className="text-sm text-gray-500 hover:text-white transition-colors"
+                    >
+                        Privacy Policy
+                    </a>
                 </div>
 
                 <a

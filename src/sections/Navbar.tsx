@@ -21,19 +21,39 @@ export function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const isPrivacyPage = typeof window !== 'undefined' && (
+        window.location.pathname === '/privacy' ||
+        window.location.pathname === '/privacy-policy' ||
+        window.location.hash.startsWith('#/privacy')
+    );
+
+    const navLinksMapped = navLinks.map((link) => ({
+        ...link,
+        href: isPrivacyPage ? `/${link.href}` : link.href,
+    }));
+
+    const contactHref = isPrivacyPage ? '/#contact' : '#contact';
+
+    const navBackgroundClass = isPrivacyPage
+        ? 'border-b border-gray-800 bg-base/95 backdrop-blur-md'
+        : scrolled
+            ? 'border-b border-gray-800 bg-base/80 backdrop-blur-md'
+            : 'bg-transparent';
+
+    const navPaddingClass = scrolled
+        ? 'py-4 md:py-8'
+        : 'py-6 md:py-14';
+
     return (
         <nav
-            className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled
-                ? 'border-b border-gray-800 bg-base/80 backdrop-blur-md py-8'
-                : 'bg-transparent py-14'
-                }`}
+            className={`fixed top-0 z-50 w-full transition-all duration-300 ${navBackgroundClass} ${navPaddingClass}`}
         >
             <div className="flex w-full items-center justify-between px-12 md:px-24">
                 <Logo className="h-12 w-auto" />
 
                 {/* Desktop Nav */}
                 <div className="hidden items-center gap-16 md:flex">
-                    {navLinks.map((link) => (
+                    {navLinksMapped.map((link) => (
                         <a
                             key={link.label}
                             href={link.href}
@@ -42,7 +62,7 @@ export function Navbar() {
                             {link.label}
                         </a>
                     ))}
-                    <Button href="#contact" variant="primary" className="ml-10">
+                    <Button href={contactHref} variant="primary" className="ml-10">
                         Get Started
                     </Button>
                 </div>
@@ -75,7 +95,7 @@ export function Navbar() {
                         className="absolute left-0 top-full w-full border-b border-gray-800 bg-base-light px-6 py-8 md:hidden"
                     >
                         <div className="flex flex-col gap-6">
-                            {navLinks.map((link) => (
+                            {navLinksMapped.map((link) => (
                                 <a
                                     key={link.label}
                                     href={link.href}
@@ -85,7 +105,7 @@ export function Navbar() {
                                     {link.label}
                                 </a>
                             ))}
-                            <Button href="#contact" onClick={() => setIsOpen(false)}>
+                            <Button href={contactHref} onClick={() => setIsOpen(false)}>
                                 Get Started
                             </Button>
                         </div>

@@ -1,11 +1,20 @@
 interface LogoProps {
     className?: string;
+    href?: string;
 }
 
-export function Logo({ className = '' }: LogoProps) {
+export function Logo({ className = '', href }: LogoProps) {
+    const isPrivacyPage = typeof window !== 'undefined' && (
+        window.location.pathname === '/privacy' ||
+        window.location.pathname === '/privacy-policy' ||
+        window.location.hash.startsWith('#/privacy')
+    );
+    
+    const targetHref = href || (isPrivacyPage ? '/' : '#home');
+
     return (
         <a
-            href="#home"
+            href={targetHref}
             className={`group flex items-center gap-2.5 ${className}`}
             aria-label="DropNotch Home"
         >
