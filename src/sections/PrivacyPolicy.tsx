@@ -177,7 +177,7 @@ const POLICY_SECTIONS: PolicySection[] = [
     {
         id: 'account-deletion',
         title: '10. Account Deletion',
-        content: 'Users may request the deletion of their account and all associated personal data at any time. You can request deletion directly within the Drow app Settings, or by submitting a request through our website contact form. Once requested, we will delete your account information within 30 days, except where retention is required by law (e.g., for financial records or regulatory compliance).'
+        content: 'Users may request the deletion of their account and all associated personal data at any time. User can Delete on Update Profile details directly within the Drow app, And if Any Doctor or Clinic Profile added on the Drow platform by user. Anytime user can Delete or Update doctor/Clinic profile directly from the Drow App  except where retention is required by law (e.g., for financial records or regulatory compliance).'
     },
     {
         id: 'children-privacy',
@@ -242,7 +242,7 @@ const POLICY_SECTIONS: PolicySection[] = [
             },
             {
                 title: 'Website',
-                content: 'https://dropnotch.com'
+                content: 'https://dropnotch.vercel.app'
             },
             {
                 title: 'Email',
@@ -473,22 +473,22 @@ export function PrivacyPolicy() {
                                 </div>
                             </div>
                             <div className="relative w-full sm:max-w-md">
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-[#718096]">
-                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </span>
                                 <input
                                     type="text"
                                     placeholder="Search policy terms..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full bg-[#d1d9e6] text-[#2d3436] placeholder-[#718096] font-semibold shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff] focus:shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff,0_0_0_2.5px_#ff4757] outline-none rounded-2xl px-5 py-3.5 pl-12 transition-all text-sm tracking-wide"
+                                    className="w-full bg-[#d1d9e6] text-[#2d3436] placeholder-[#718096] font-semibold shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff] focus:shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff,0_0_0_2.5px_#ff4757] outline-none rounded-2xl py-5 pl-6 pr-16 transition-all text-base tracking-wide"
                                 />
+                                <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-[#718096] pointer-events-none">
+                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </span>
                                 {searchQuery && (
                                     <button
                                         onClick={() => setSearchQuery('')}
-                                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-[#718096] hover:text-[#ff4757] transition-colors"
+                                        className="absolute inset-y-0 right-10 flex items-center text-[#718096] hover:text-[#ff4757] transition-colors"
                                     >
                                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
