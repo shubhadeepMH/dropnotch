@@ -1,29 +1,25 @@
 @import "tailwindcss";
 
-/* ── Custom Theme ── */
+/* ── Industrial Skeuomorphism Design Tokens ── */
 @theme {
-  --color-base: #0B0F19;
-  --color-base-light: #161B28;
-  --color-base-card: #1C2333;
-  --color-base-border: #2D3748;
+  --color-bg: #e0e5ec;
+  --color-panel: #f0f2f5;
+  --color-recessed: #d1d9e6;
+  --color-text-primary: #2d3436;
+  --color-text-secondary: #4a5568;
+  --color-accent: #ff4757;
+  --color-accent-text: #ffffff;
+  --color-shadow: #babecc;
+  --color-highlight: #ffffff;
+  --color-deep-shadow: #a3b1c6;
 
-  --color-accent-indigo: #4F46E5;
-  /* indigo-600 */
-  --color-accent-violet: #7C3AED;
-  /* violet-600 */
-  --color-accent-cyan: #06B6D4;
-  /* cyan-500 */
-  --color-accent-cyan-soft: #22D3EE;
+  --font-family-primary: "Inter", system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
 
-  --color-text-primary: #F3F4F6;
-  /* gray-100 */
-  --color-text-secondary: #D1D5DB;
-  /* gray-300 */
-  --color-text-muted: #9CA3AF;
-  /* gray-400 */
-
-  --font-family-heading: "Quicksand", sans-serif;
-  --font-family-body: "Quicksand", sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 }
 
 /* ── Base Reset ── */
@@ -39,8 +35,8 @@ html {
 }
 
 body {
-  font-family: var(--font-family-body);
-  background-color: var(--color-base);
+  font-family: var(--font-family-primary);
+  background-color: var(--color-bg);
   color: var(--color-text-primary);
   overflow-x: hidden;
   line-height: 1.6;
@@ -50,18 +46,15 @@ body {
 .container-global {
   width: 100%;
   max-width: 80rem;
-  /* max-w-7xl */
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
-  /* px-6 */
   padding-right: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .container-global {
     padding-left: 2rem;
-    /* px-8 */
     padding-right: 2rem;
   }
 }
@@ -69,18 +62,16 @@ body {
 /* ── Section Rhythm ── */
 .section-spacing {
   padding-top: 5rem;
-  /* py-20 */
   padding-bottom: 5rem;
 }
 
-/* ── SaaS Specific Components ── */
+/* ── Industrial Card Style ── */
 .saas-card {
   padding: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
-  /* rounded-2xl */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease-out;
+  background-color: var(--color-panel);
+  border-radius: var(--radius-lg);
+  box-shadow: 8px 8px 16px var(--color-shadow), -8px -8px 16px var(--color-highlight);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @media (min-width: 1024px) {
@@ -90,80 +81,105 @@ body {
 }
 
 .saas-card:hover {
-  transform: translateY(-0.25rem);
-  /* hover:-translate-y-1 */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  /* hover:shadow-lg */
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 24px var(--color-shadow), -12px -12px 24px var(--color-highlight);
 }
 
+/* ── Accent Gradient/Text ── */
 .gradient-primary {
-  background: linear-gradient(to right, #4f46e5, #7c3aed, #06b6d4);
+  background: var(--color-accent);
 }
 
 .gradient-text {
-  background: linear-gradient(to right, #4f46e5, #7c3aed, #06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-accent);
+  -webkit-text-fill-color: var(--color-accent);
 }
 
-/* ── Input Styling ── */
+/* ── Industrial Input Styling ── */
 .saas-input {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  background-color: #1F2937;
-  /* gray-800 */
-  border: 1px solid #374151;
-  /* gray-700 */
-  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-recessed);
+  border: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
   outline: none;
+  box-shadow: inset 4px 4px 8px var(--color-shadow), inset -4px -4px 8px var(--color-highlight);
   transition: all 0.3s ease-out;
 }
 
 .saas-input:focus {
-  border-color: #6366F1;
-  /* indigo-500 */
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
-  /* focus:ring-2 */
+  box-shadow: inset 4px 4px 8px var(--color-shadow), inset -4px -4px 8px var(--color-highlight), 0 0 10px rgba(255, 71, 87, 0.4);
 }
 
-/* ── Buttons ── */
+/* ── Industrial Button Styles ── */
 .btn-saas {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  /* px-6 py-3 */
-  font-weight: 500;
-  border-radius: 0.5rem;
-  /* rectangular with slight rounding */
-  transition: all 0.3s ease-out;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
   cursor: pointer;
-}
-
-.btn-saas:hover {
-  transform: scale(1.05);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: var(--font-family-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .btn-primary {
-  background: linear-gradient(to right, #4f46e5, #7c3aed, #06b6d4);
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: 6px 6px 12px var(--color-shadow), -6px -6px 12px var(--color-highlight);
+}
+
+.btn-primary:hover {
+  box-shadow: 8px 8px 16px var(--color-shadow), -8px -8px 16px var(--color-highlight);
+}
+
+.btn-primary:active {
+  box-shadow: inset 4px 4px 8px var(--color-deep-shadow), inset -4px -4px 8px rgba(255, 71, 87, 0.3);
+  transform: scale(0.98);
 }
 
 .btn-outline {
-  border: 1px solid #374151;
-  color: #D1D5DB;
-  background: transparent;
+  background-color: var(--color-panel);
+  color: var(--color-text-primary);
+  box-shadow: 6px 6px 12px var(--color-shadow), -6px -6px 12px var(--color-highlight);
 }
 
 .btn-outline:hover {
-  border-color: #6366F1;
-  color: white;
+  color: var(--color-accent);
 }
 
-/* ── General Utilities ── */
-.glass {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.btn-outline:active {
+  box-shadow: inset 4px 4px 8px var(--color-shadow), inset -4px -4px 8px var(--color-highlight);
+  transform: scale(0.98);
+}
+
+/* ── Recessed Icon Container ── */
+.recessed-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-recessed);
+  border-radius: var(--radius-md);
+  box-shadow: inset 4px 4px 8px var(--color-shadow), inset -4px -4px 8px var(--color-highlight);
+}
+
+/* ── Noise Texture Overlay (subtle) ── */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
 }

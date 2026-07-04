@@ -17,7 +17,7 @@ export function About() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="space-y-12 text-lg md:text-xl leading-relaxed text-gray-400"
+                    className="space-y-12 text-lg md:text-xl leading-relaxed text-[#4a5568]"
                 >
                     <p>
                         DropNotch is a product development studio and service-based startup
@@ -32,7 +32,7 @@ export function About() {
 
                     {/* Integrated Brand Info moved from Footer */}
                     <div className="pt-16 mt-20 flex flex-col items-center gap-6">
-                        <p className="max-w-2xl text-lg md:text-xl leading-relaxed text-gray-400 font-medium">
+                        <p className="max-w-2xl text-lg md:text-xl leading-relaxed text-[#4a5568] font-medium">
                             DropNotch is a service-based startup and product-focused studio
                             building high-performance digital solutions for the next
                             generation of businesses.

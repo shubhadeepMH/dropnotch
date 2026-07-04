@@ -65,7 +65,7 @@ export function Contact() {
                             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                     <div className="space-y-2">
-                                        <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-1">
+                                        <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-[#4a5568] ml-1">
                                             Full Name
                                         </label>
                                         <input
@@ -81,7 +81,7 @@ export function Contact() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-1">
+                                        <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-[#4a5568] ml-1">
                                             Email Address
                                         </label>
                                         <input
@@ -98,9 +98,9 @@ export function Contact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-1">
-                                        How can we help?
-                                    </label>
+                                    <label htmlFor="message" className="text-xs font-bold uppercase tracking-widest text-[#4a5568] ml-1">
+                                            How can we help?
+                                        </label>
                                     <textarea
                                         id="message"
                                         name="message"
@@ -128,13 +128,13 @@ export function Contact() {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                             >
-                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-cyan-500/15 text-cyan-400 shadow-xl shadow-cyan-500/10 transition-transform">
+                                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full recessed-icon text-[#ff4757] transition-transform">
                                     <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-4">Message Sent!</h3>
-                                <p className="max-w-xs text-center text-gray-400 mb-8">
+                                <h3 className="text-2xl font-bold text-[#2d3436] mb-4">Message Sent!</h3>
+                                <p className="max-w-xs text-center text-[#4a5568] mb-8">
                                     Thank you for reaching out. We&apos;ve received your message and will get back to you shortly.
                                 </p>
                                 <Button variant="outline" className="w-full" onClick={() => setStatus('idle')}>
