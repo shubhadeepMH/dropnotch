@@ -49,7 +49,9 @@ const POLICY_SECTIONS: PolicySection[] = [
                             'Experience details',
                             'Practice addresses',
                             'Consultation fees',
-                            'Contact information'
+                            'Contact information',
+                            'Medical credentials and certifications',
+                            'Practice license details'
                         ]
                     },
                     {
@@ -60,7 +62,8 @@ const POLICY_SECTIONS: PolicySection[] = [
                             'Address',
                             'Contact information',
                             'Associated doctors',
-                            'Service details'
+                            'Service details',
+                            'Clinic license and certifications'
                         ]
                     }
                 ]
@@ -76,6 +79,16 @@ const POLICY_SECTIONS: PolicySection[] = [
                     'Comments',
                     'Feedback',
                     'Profile information'
+                ]
+            },
+            {
+                title: 'Usage Data',
+                content: 'We collect information about how you interact with our platform, including:',
+                items: [
+                    'Bookings and appointments',
+                    'Search queries for doctors and clinics',
+                    'Ratings, reviews, and comments',
+                    'Interactive features usage'
                 ]
             },
             {
@@ -125,6 +138,10 @@ const POLICY_SECTIONS: PolicySection[] = [
         content: 'We do not sell your personal information. We may share information in the following circumstances:',
         subsections: [
             {
+                title: 'Public Profiles',
+                content: 'Doctor and Clinic profiles, listings, ratings, and reviews are visible to all users of the platform to facilitate discovery, booking, and healthcare information sharing.'
+            },
+            {
                 title: 'With Your Consent',
                 content: 'When you explicitly authorize us to share information.'
             },
@@ -160,7 +177,7 @@ const POLICY_SECTIONS: PolicySection[] = [
     {
         id: 'account-deletion',
         title: '10. Account Deletion',
-        content: 'Users may request deletion of their account and associated personal information. Certain information may be retained where required by law, for fraud prevention, dispute resolution, security purposes, or legitimate business needs.'
+        content: 'Users may request the deletion of their account and all associated personal data at any time. You can request deletion directly within the Drow app Settings, or by submitting a request through our website contact form. Once requested, we will delete your account information within 30 days, except where retention is required by law (e.g., for financial records or regulatory compliance).'
     },
     {
         id: 'children-privacy',
@@ -193,7 +210,21 @@ const POLICY_SECTIONS: PolicySection[] = [
     {
         id: 'medical-disclaimer',
         title: '13. Medical Disclaimer',
-        content: 'Drow is a healthcare discovery and information platform. Drow does not provide medical advice, diagnosis, treatment, emergency services, or healthcare consultations. Information available within the app is provided for informational purposes only and should not be considered a substitute for professional medical advice. Always consult a qualified healthcare professional regarding medical concerns.'
+        introduction: 'The Drow platform provides general health and wellness information for educational purposes only. Please read the following disclaimer carefully:',
+        subsections: [
+            {
+                title: 'No Medical Advice',
+                content: 'The information, including but not limited to text, graphics, images, tips, and other material contained in the Drow mobile application and website is for informational and educational purposes only. No material on this application is intended to be a substitute for professional medical advice, diagnosis, or treatment.'
+            },
+            {
+                title: 'Consult a Doctor',
+                content: 'Always seek the advice of your physician or other qualified healthcare provider with any questions you may have regarding a medical condition or treatment, and before undertaking a new healthcare regimen. Never disregard professional medical advice or delay in seeking it because of something you have read or accessed through this application.'
+            },
+            {
+                title: 'No Doctor-Patient Relationship',
+                content: 'The use of Drow (Dr On The Way) does not establish a doctor-patient relationship. Drow is a discovery and information platform connecting users with third-party medical professionals and clinics. Drow is not liable for any consultations, bookings, or medical actions taken between users and healthcare providers.'
+            }
+        ]
     },
     {
         id: 'changes-policy',
@@ -438,7 +469,7 @@ export function PrivacyPolicy() {
                                 </div>
                                 <div>
                                     <p className="text-[10px] uppercase tracking-widest text-[#ff4757] font-bold">Effective Date</p>
-                                    <p className="text-base font-bold text-[#2d3436] mt-0.5">June 7, 2026</p>
+                                    <p className="text-base font-bold text-[#2d3436] mt-0.5">July 4, 2026</p>
                                 </div>
                             </div>
                             <div className="relative w-full sm:max-w-md">
