@@ -40,7 +40,7 @@ export default function App() {
 
     // Standard website layout containing headers and footers
     return (
-      <div className="relative min-h-screen flex flex-col bg-[#0B0F19]">
+      <div className="relative min-h-screen flex flex-col bg-[#e0e5ec]">
         <main className="flex-grow">
           <PrivacyPolicy />
         </main>
@@ -51,7 +51,7 @@ export default function App() {
 
   // Landing page routing
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0B0F19]">
+    <div className="relative min-h-screen overflow-hidden bg-[#e0e5ec]">
       <Navbar />
       <main>
         <Hero />

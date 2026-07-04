@@ -49,7 +49,9 @@ const POLICY_SECTIONS: PolicySection[] = [
                             'Experience details',
                             'Practice addresses',
                             'Consultation fees',
-                            'Contact information'
+                            'Contact information',
+                            'Medical credentials and certifications',
+                            'Practice license details'
                         ]
                     },
                     {
@@ -60,7 +62,8 @@ const POLICY_SECTIONS: PolicySection[] = [
                             'Address',
                             'Contact information',
                             'Associated doctors',
-                            'Service details'
+                            'Service details',
+                            'Clinic license and certifications'
                         ]
                     }
                 ]
@@ -76,6 +79,16 @@ const POLICY_SECTIONS: PolicySection[] = [
                     'Comments',
                     'Feedback',
                     'Profile information'
+                ]
+            },
+            {
+                title: 'Usage Data',
+                content: 'We collect information about how you interact with our platform, including:',
+                items: [
+                    'Bookings and appointments',
+                    'Search queries for doctors and clinics',
+                    'Ratings, reviews, and comments',
+                    'Interactive features usage'
                 ]
             },
             {
@@ -125,6 +138,10 @@ const POLICY_SECTIONS: PolicySection[] = [
         content: 'We do not sell your personal information. We may share information in the following circumstances:',
         subsections: [
             {
+                title: 'Public Profiles',
+                content: 'Doctor and Clinic profiles, listings, ratings, and reviews are visible to all users of the platform to facilitate discovery, booking, and healthcare information sharing.'
+            },
+            {
                 title: 'With Your Consent',
                 content: 'When you explicitly authorize us to share information.'
             },
@@ -160,7 +177,7 @@ const POLICY_SECTIONS: PolicySection[] = [
     {
         id: 'account-deletion',
         title: '10. Account Deletion',
-        content: 'Users may request deletion of their account and associated personal information. Certain information may be retained where required by law, for fraud prevention, dispute resolution, security purposes, or legitimate business needs.'
+        content: 'Users may request the deletion of their account and all associated personal data at any time. You can request deletion directly within the Drow app Settings, or by submitting a request through our website contact form. Once requested, we will delete your account information within 30 days, except where retention is required by law (e.g., for financial records or regulatory compliance).'
     },
     {
         id: 'children-privacy',
@@ -193,7 +210,21 @@ const POLICY_SECTIONS: PolicySection[] = [
     {
         id: 'medical-disclaimer',
         title: '13. Medical Disclaimer',
-        content: 'Drow is a healthcare discovery and information platform. Drow does not provide medical advice, diagnosis, treatment, emergency services, or healthcare consultations. Information available within the app is provided for informational purposes only and should not be considered a substitute for professional medical advice. Always consult a qualified healthcare professional regarding medical concerns.'
+        introduction: 'The Drow platform provides general health and wellness information for educational purposes only. Please read the following disclaimer carefully:',
+        subsections: [
+            {
+                title: 'No Medical Advice',
+                content: 'The information, including but not limited to text, graphics, images, tips, and other material contained in the Drow mobile application and website is for informational and educational purposes only. No material on this application is intended to be a substitute for professional medical advice, diagnosis, or treatment.'
+            },
+            {
+                title: 'Consult a Doctor',
+                content: 'Always seek the advice of your physician or other qualified healthcare provider with any questions you may have regarding a medical condition or treatment, and before undertaking a new healthcare regimen. Never disregard professional medical advice or delay in seeking it because of something you have read or accessed through this application.'
+            },
+            {
+                title: 'No Doctor-Patient Relationship',
+                content: 'The use of Drow (Dr On The Way) does not establish a doctor-patient relationship. Drow is a discovery and information platform connecting users with third-party medical professionals and clinics. Drow is not liable for any consultations, bookings, or medical actions taken between users and healthcare providers.'
+            }
+        ]
     },
     {
         id: 'changes-policy',
@@ -270,7 +301,7 @@ export function PrivacyPolicy() {
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            const offset = isAppMode ? 80 : 120; // Accounts for sticky header
+            const offset = isAppMode ? 90 : 140; // Accounts for sticky header
             const bodyRect = document.body.getBoundingClientRect().top;
             const elementRect = element.getBoundingClientRect().top;
             const elementPosition = elementRect - bodyRect;
@@ -302,7 +333,7 @@ export function PrivacyPolicy() {
             <>
                 {parts.map((part, i) =>
                     part.toLowerCase() === query.toLowerCase() ? (
-                        <mark key={i} className="bg-cyan-500/30 text-accent-cyan-soft rounded px-0.5 font-medium">
+                        <mark key={i} className="bg-[#ff4757]/20 text-[#ff4757] rounded px-0.5 font-semibold">
                             {part}
                         </mark>
                     ) : (
@@ -340,13 +371,13 @@ export function PrivacyPolicy() {
     const filteredSections = POLICY_SECTIONS.filter(sec => matchesSearch(sec, searchQuery));
 
     return (
-        <div className={`relative min-h-screen text-gray-300 font-sans antialiased selection:bg-accent-indigo selection:text-white ${isAppMode ? 'bg-[#0B0F19]' : 'bg-[#0B0F19]'}`}>
+        <div className={`relative min-h-screen text-[#4a5568] font-sans antialiased selection:bg-[#ff4757]/30 selection:text-[#ff4757] bg-[#e0e5ec] ${isAppMode ? 'pt-0' : 'pt-0'}`}>
 
             {/* Header / Top Nav Bar */}
             {isAppMode ? (
                 // Clean native-feeling header for WebView with safe-area notch support
                 <header
-                    className="fixed top-0 left-0 w-full z-40 flex items-center justify-between border-b border-gray-800 bg-[#0B0F19]/95 px-4 backdrop-blur-md"
+                    className="fixed top-0 left-0 w-full z-40 flex items-center justify-between border-b border-[#babecc] bg-[#f0f2f5]/95 px-4 backdrop-blur-md shadow-sm"
                     style={{
                         paddingTop: 'env(safe-area-inset-top, 0px)',
                         height: 'calc(4.5rem + env(safe-area-inset-top, 0px))'
@@ -354,65 +385,71 @@ export function PrivacyPolicy() {
                 >
                     <button
                         onClick={handleBackClick}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-800 bg-base-light text-gray-300 transition-colors hover:text-white active:scale-95"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white bg-[#f0f2f5] text-[#2d3436] transition-all hover:text-[#ff4757] shadow-[4px_4px_8px_#babecc,-4px_-4px_8px_#ffffff] active:scale-95 active:shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff]"
                         aria-label="Go Back"
                     >
                         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                         </svg>
                     </button>
-                    <h1 className="text-lg font-bold text-white tracking-wide">Privacy Policy</h1>
+                    <h1 className="text-lg font-bold text-[#2d3436] tracking-wide">Privacy Policy</h1>
                     <div className="w-10 h-10" /> {/* Spacer to center the title */}
                 </header>
             ) : (
                 // Breadcrumbs & Header for the regular website
-                <div className="pt-20 sm:pt-24 pb-8 sm:pb-12 border-b border-gray-800 bg-[#0B0F19]">
+                <div className="pt-36 sm:pt-44 pb-10 sm:pb-14 border-b border-[#babecc] bg-[#e0e5ec]">
                     <div className="mx-auto max-w-7xl px-6 sm:px-8">
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-                            <a href="/" className="hover:text-white transition-colors">Home</a>
-                            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="flex items-center gap-2 text-sm text-[#4a5568] mb-4">
+                            <a href="/" className="hover:text-[#ff4757] transition-colors font-medium">Home</a>
+                            <svg className="h-3 w-3 text-[#718096]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                             </svg>
-                            <span className="text-gray-300 font-medium">Privacy Policy</span>
+                            <span className="text-[#2d3436] font-semibold">Privacy Policy</span>
                         </div>
-                        <h1 className="text-4xl font-extrabold text-white tracking-tight sm:text-5xl">
+                        <h1 className="text-4xl font-extrabold text-[#2d3436] tracking-tight sm:text-5xl">
                             Privacy Policy
                         </h1>
-                        <p className="mt-4 text-base text-gray-400 max-w-2xl leading-relaxed">
-                            Welcome to <strong className="text-white">Drow (Dr On The Way)</strong>. We respect your privacy and are committed to protecting your personal information.
+                        <p className="mt-4 text-base text-[#4a5568] max-w-2xl leading-relaxed">
+                            Welcome to <strong className="text-[#2d3436]">Drow (Dr On The Way)</strong>. We respect your privacy and are committed to protecting your personal information.
                         </p>
                     </div>
                 </div>
             )}
 
-            {/* Main content grid */}
+            {/* Main content area */}
             <div
-                className="mx-auto max-w-7xl px-4 pb-8 sm:pb-12 pt-8 sm:pt-12"
+                className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 pt-8 sm:pt-12"
                 style={isAppMode ? { marginTop: 'calc(5.5rem + env(safe-area-inset-top, 0px))' } : undefined}
             >
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+                <div className="flex gap-10 lg:gap-14">
 
-                    {/* Desktop Sidebar (Table of Contents) */}
+                    {/* Desktop Sidebar — full height, fixed left panel */}
                     {!isAppMode && (
-                        <aside className="hidden lg:block lg:col-span-1">
-                            <div className="sticky top-28 space-y-6">
-                                <div className="rounded-xl border border-gray-800 bg-base-light/50 p-5 backdrop-blur">
-                                    <h3 className="text-sm font-bold uppercase tracking-wider text-white mb-4">
-                                        Quick Navigation
-                                    </h3>
-                                    <nav className="space-y-2 max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin">
-                                        {POLICY_SECTIONS.map((section) => (
-                                            <button
-                                                key={section.id}
-                                                onClick={() => scrollToSection(section.id)}
-                                                className={`w-full text-left text-sm py-1.5 px-3 rounded-lg transition-all ${activeSection === section.id
-                                                    ? 'bg-accent-indigo/25 text-accent-cyan-soft border-l-2 border-accent-cyan font-medium'
-                                                    : 'text-gray-400 hover:text-white hover:bg-gray-800/40'
-                                                    }`}
-                                            >
-                                                {section.title.split('. ')[1] || section.title}
-                                            </button>
-                                        ))}
+                        <aside className="hidden lg:flex lg:flex-col lg:w-72 xl:w-80 flex-shrink-0">
+                            <div className="sticky top-32 flex flex-col h-[calc(100vh-160px)]">
+                                <div className="rounded-2xl bg-[#f0f2f5] border border-white shadow-[6px_6px_14px_#babecc,-6px_-6px_14px_#ffffff] p-6 flex flex-col flex-grow overflow-hidden">
+                                    <div className="flex items-center gap-2.5 mb-5 pb-4 border-b border-[#babecc]/50">
+                                        <span className="w-2 h-5 bg-[#ff4757] rounded-full"></span>
+                                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#2d3436]">
+                                            Quick Navigation
+                                        </h3>
+                                    </div>
+                                    <nav className="space-y-1 flex-grow overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-[#babecc] scrollbar-track-transparent">
+                                        {POLICY_SECTIONS.map((section) => {
+                                            const isActive = activeSection === section.id;
+                                            return (
+                                                <button
+                                                    key={section.id}
+                                                    onClick={() => scrollToSection(section.id)}
+                                                    className={`w-full text-left text-sm py-3 px-4 rounded-xl transition-all duration-200 ${isActive
+                                                        ? 'bg-[#d1d9e6] text-[#ff4757] border-l-4 border-[#ff4757] font-bold shadow-[inset_2px_2px_5px_#babecc,inset_-2px_-2px_5px_#ffffff]'
+                                                        : 'text-[#4a5568] hover:text-[#2d3436] hover:bg-[#e0e5ec]/60 border-l-4 border-transparent'
+                                                        }`}
+                                                >
+                                                    {section.title.split('. ')[1] || section.title}
+                                                </button>
+                                            );
+                                        })}
                                     </nav>
                                 </div>
                             </div>
@@ -420,18 +457,25 @@ export function PrivacyPolicy() {
                     )}
 
                     {/* Main content body */}
-                    <div className={`col-span-1 ${isAppMode ? 'lg:col-span-4' : 'lg:col-span-3'} space-y-8`}>
+                    <div className={`flex-grow min-w-0 space-y-10`}>
 
                         {/* Search & Header Stats */}
-                        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between bg-base-card border border-gray-800 rounded-xl p-4 sm:p-6 shadow-xl">
-                            <div className="w-full sm:w-auto text-left">
-                                <p className="text-xs uppercase tracking-widest text-accent-cyan font-bold">Effective Date</p>
-                                <p className="text-sm font-semibold text-white mt-0.5">June 7, 2026</p>
+                        <div className="flex flex-col sm:flex-row gap-6 items-center justify-between bg-[#f0f2f5] border border-white rounded-2xl p-5 sm:p-6 shadow-[8px_8px_16px_#babecc,-8px_-8px_16px_#ffffff]">
+                            <div className="w-full sm:w-auto text-left flex items-center gap-4">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d1d9e6] shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff] text-[#ff4757]">
+                                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-widest text-[#ff4757] font-bold">Effective Date</p>
+                                    <p className="text-base font-bold text-[#2d3436] mt-0.5">July 4, 2026</p>
+                                </div>
                             </div>
-                            <div className="relative w-full sm:max-w-xs">
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                            <div className="relative w-full sm:max-w-md">
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-[#718096]">
                                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
                                 </span>
                                 <input
@@ -439,12 +483,12 @@ export function PrivacyPolicy() {
                                     placeholder="Search policy terms..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="saas-input pl-10 h-11 w-full bg-base/80"
+                                    className="w-full bg-[#d1d9e6] text-[#2d3436] placeholder-[#718096] font-semibold shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff] focus:shadow-[inset_3px_3px_6px_#babecc,inset_-3px_-3px_6px_#ffffff,0_0_0_2.5px_#ff4757] outline-none rounded-2xl px-5 py-3.5 pl-12 transition-all text-sm tracking-wide"
                                 />
                                 {searchQuery && (
                                     <button
                                         onClick={() => setSearchQuery('')}
-                                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
+                                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-[#718096] hover:text-[#ff4757] transition-colors"
                                     >
                                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -456,13 +500,13 @@ export function PrivacyPolicy() {
 
                         {/* Search Result Status */}
                         {searchQuery && (
-                            <div className="text-sm text-gray-400">
-                                Found {filteredSections.length} sections matching &quot;<span className="text-white font-medium">{searchQuery}</span>&quot;
+                            <div className="text-sm text-[#4a5568] font-medium pl-2">
+                                Found {filteredSections.length} sections matching &quot;<span className="text-[#2d3436] font-bold">{searchQuery}</span>&quot;
                             </div>
                         )}
 
                         {/* Sections List */}
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             <AnimatePresence mode="popLayout">
                                 {filteredSections.length > 0 ? (
                                     filteredSections.map((section, index) => (
@@ -472,35 +516,34 @@ export function PrivacyPolicy() {
                                             initial={{ opacity: 0, y: 15 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.3) }}
-                                            className="group relative rounded-2xl border border-gray-800/80 bg-base-card/40 p-6 sm:p-8 hover:border-gray-800 transition-all duration-300"
+                                            className="group relative rounded-2xl border border-white bg-[#f0f2f5] p-6 sm:p-8 lg:p-10 shadow-[8px_8px_16px_#babecc,-8px_-8px_16px_#ffffff] hover:shadow-[12px_12px_24px_#babecc,-12px_-12px_24px_#ffffff] transition-all duration-300"
                                         >
-                                            {/* Accent Gradient Border Effect on Hover */}
-                                            <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-r from-accent-indigo/10 via-accent-violet/10 to-accent-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-
-                                            <h2 className="text-xl font-bold text-white mb-4 sm:text-2xl flex items-center gap-3">
-                                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan-soft to-accent-indigo">
+                                            <h2 className="text-xl font-bold text-[#2d3436] mb-5 sm:text-2xl lg:text-[1.7rem] flex items-center gap-3">
+                                                <span className="w-2.5 h-6 bg-[#ff4757] rounded-full flex-shrink-0"></span>
+                                                <span>
                                                     {highlightText(section.title, searchQuery)}
                                                 </span>
                                             </h2>
 
                                             {section.introduction && (
-                                                <p className="text-gray-300 leading-relaxed mb-4">
+                                                <p className="text-[#4a5568] leading-relaxed mb-5 text-sm sm:text-base lg:text-lg">
                                                     {highlightText(section.introduction, searchQuery)}
                                                 </p>
                                             )}
 
                                             {section.content && (
-                                                <p className="text-gray-300 leading-relaxed mb-4">
+                                                <p className="text-[#4a5568] leading-relaxed mb-5 text-sm sm:text-base lg:text-lg">
                                                     {highlightText(section.content, searchQuery)}
                                                 </p>
                                             )}
 
                                             {/* Standard List Items */}
                                             {section.items && (
-                                                <ul className="list-disc pl-6 space-y-2 mb-4 text-gray-300">
+                                                <ul className="space-y-3 mb-5 text-[#4a5568] pl-1">
                                                     {section.items.map((item, i) => (
-                                                        <li key={i} className="leading-relaxed">
-                                                            {highlightText(item, searchQuery)}
+                                                        <li key={i} className="flex items-start text-sm sm:text-base lg:text-lg leading-relaxed">
+                                                            <span className="h-2 w-2 rounded-full bg-[#ff4757] mr-3 mt-2.5 flex-shrink-0" />
+                                                            <span>{highlightText(item, searchQuery)}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -508,23 +551,24 @@ export function PrivacyPolicy() {
 
                                             {/* Subsections rendering */}
                                             {section.subsections && (
-                                                <div className="mt-6 space-y-6 pl-2 sm:pl-4 border-l border-gray-800">
+                                                <div className="mt-6 space-y-7 pl-5 sm:pl-7 border-l-2 border-[#babecc]">
                                                     {section.subsections.map((sub, i) => (
-                                                        <div key={i} className="space-y-2">
-                                                            <h3 className="text-base font-semibold text-white flex items-center gap-2">
-                                                                <span className="h-1.5 w-1.5 rounded-full bg-accent-cyan" />
+                                                        <div key={i} className="space-y-3">
+                                                            <h3 className="text-base lg:text-lg font-bold text-[#2d3436] flex items-center gap-2.5">
+                                                                <span className="h-2.5 w-2.5 rounded-full border border-white bg-[#f0f2f5] shadow-[2px_2px_4px_#babecc,-2px_-2px_4px_#ffffff] flex-shrink-0" />
                                                                 {highlightText(sub.title, searchQuery)}
                                                             </h3>
                                                             {sub.content && (
-                                                                <p className="text-sm text-gray-400 leading-relaxed">
+                                                                <p className="text-sm lg:text-base text-[#4a5568] leading-relaxed pl-6">
                                                                     {highlightText(sub.content, searchQuery)}
                                                                 </p>
                                                             )}
                                                             {sub.items && (
-                                                                <ul className="list-circle pl-6 space-y-1.5 text-sm text-gray-400">
+                                                                <ul className="space-y-2.5 text-sm lg:text-base text-[#4a5568] pl-6">
                                                                     {sub.items.map((item, itemIdx) => (
-                                                                        <li key={itemIdx}>
-                                                                            {highlightText(item, searchQuery)}
+                                                                        <li key={itemIdx} className="flex items-start leading-relaxed">
+                                                                            <span className="h-1.5 w-2 rounded bg-[#ff4757]/60 mr-3 mt-2.5 flex-shrink-0" />
+                                                                            <span>{highlightText(item, searchQuery)}</span>
                                                                         </li>
                                                                     ))}
                                                                 </ul>
@@ -532,17 +576,19 @@ export function PrivacyPolicy() {
 
                                                             {/* Nested Subsections for Doctors/Clinics list */}
                                                             {(sub as any).subsections && (
-                                                                <div className="mt-3 space-y-4 pl-4 border-l border-gray-800/60">
+                                                                <div className="mt-4 space-y-4 pl-4 sm:pl-6 border-l-2 border-[#babecc]/50">
                                                                     {(sub as any).subsections.map((nested: any, nestedIdx: number) => (
-                                                                        <div key={nestedIdx} className="space-y-1">
-                                                                            <h4 className="text-sm font-medium text-gray-300">
+                                                                        <div key={nestedIdx} className="bg-[#e0e5ec]/40 rounded-xl p-5 shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff] space-y-3">
+                                                                            <h4 className="text-sm lg:text-base font-bold text-[#2d3436] flex items-center gap-2">
+                                                                                <span className="h-1.5 w-1.5 rounded-full bg-[#ff4757]" />
                                                                                 {highlightText(nested.title, searchQuery)}
                                                                             </h4>
                                                                             {nested.items && (
-                                                                                <ul className="list-square pl-5 space-y-1 text-xs text-gray-400">
+                                                                                <ul className="space-y-2 text-xs lg:text-sm text-[#4a5568] pl-4">
                                                                                     {nested.items.map((ni: string, niIdx: number) => (
-                                                                                        <li key={niIdx}>
-                                                                                            {highlightText(ni, searchQuery)}
+                                                                                        <li key={niIdx} className="flex items-start">
+                                                                                            <span className="h-1.5 w-1.5 rounded-full bg-[#718096] mr-2.5 mt-1.5 flex-shrink-0" />
+                                                                                            <span>{highlightText(ni, searchQuery)}</span>
                                                                                         </li>
                                                                                     ))}
                                                                                 </ul>
@@ -558,12 +604,12 @@ export function PrivacyPolicy() {
                                         </motion.section>
                                     ))
                                 ) : (
-                                    <div className="text-center py-16 border border-dashed border-gray-800 rounded-2xl">
-                                        <svg className="mx-auto h-12 w-12 text-gray-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <div className="text-center py-16 bg-[#f0f2f5] border-2 border-dashed border-[#babecc] rounded-2xl shadow-[inset_4px_4px_8px_#babecc,inset_-4px_-4px_8px_#ffffff]">
+                                        <svg className="mx-auto h-12 w-12 text-[#718096] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <h3 className="text-lg font-bold text-white mb-2">No Results Found</h3>
-                                        <p className="text-sm text-gray-500 max-w-xs mx-auto">
+                                        <h3 className="text-lg font-bold text-[#2d3436] mb-2">No Results Found</h3>
+                                        <p className="text-sm text-[#4a5568] max-w-xs mx-auto">
                                             We couldn&apos;t find any sections matching &quot;{searchQuery}&quot;. Try adjusting your keywords.
                                         </p>
                                     </div>
@@ -571,53 +617,83 @@ export function PrivacyPolicy() {
                             </AnimatePresence>
                         </div>
                     </div>
-                </div>
+                </div>  {/* end flex row */}
             </div>
 
-            {/* Mobile TOC Drawer/Floating Button - rendered on all mobile/tablet viewports */}
-            <div className="fixed bottom-6 right-6 z-40 lg:hidden">
-                <button
-                    onClick={() => setIsTocOpen(!isTocOpen)}
-                    className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-accent-indigo to-accent-cyan text-white shadow-lg shadow-accent-indigo/35 active:scale-95 transition-all"
-                    aria-label="Table of Contents"
-                >
-                    {isTocOpen ? (
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    ) : (
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            {/* Mobile TOC Floating Button — only shows menu icon */}
+            {!isTocOpen && (
+                <div className="fixed bottom-6 right-6 z-40 lg:hidden">
+                    <button
+                        onClick={() => setIsTocOpen(true)}
+                        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#f0f2f5] text-[#2d3436] hover:text-[#ff4757] shadow-[6px_6px_12px_#babecc,-6px_-6px_12px_#ffffff] border border-white active:scale-95 transition-all"
+                        aria-label="Table of Contents"
+                    >
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" />
                         </svg>
-                    )}
-                </button>
+                    </button>
+                </div>
+            )}
 
-                <AnimatePresence>
-                    {isTocOpen && (
+            {/* Mobile TOC Modal — 80% height with close inside */}
+            <AnimatePresence>
+                {isTocOpen && (
+                    <>
+                        {/* Backdrop overlay */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                            className="absolute bottom-16 right-0 w-72 rounded-2xl border border-gray-800 bg-base-card p-4 shadow-2xl backdrop-blur-md"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsTocOpen(false)}
+                            className="fixed inset-0 bg-[#2d3436]/40 backdrop-blur-sm z-40 lg:hidden"
+                        />
+                        {/* Slide-up Bottom Drawer — 80vh */}
+                        <motion.div
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0 }}
+                            exit={{ y: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+                            className="fixed bottom-0 left-0 right-0 h-[80vh] rounded-t-[2rem] bg-[#f0f2f5] border-t border-white px-6 pb-8 pt-4 shadow-[-10px_-10px_30px_rgba(0,0,0,0.05),10px_10px_30px_rgba(0,0,0,0.1)] z-50 flex flex-col lg:hidden"
                         >
-                            <h4 className="text-sm font-bold text-white mb-3 tracking-wider uppercase">
-                                Table of Contents
-                            </h4>
-                            <div className="space-y-1.5 max-h-[50vh] overflow-y-auto pr-1">
-                                {POLICY_SECTIONS.map((sec) => (
-                                    <button
-                                        key={sec.id}
-                                        onClick={() => scrollToSection(sec.id)}
-                                        className="w-full text-left text-xs py-2 px-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/40 transition-colors block truncate"
-                                    >
-                                        {sec.title}
-                                    </button>
-                                ))}
+                            {/* Drag handle */}
+                            <div className="w-12 h-1.5 bg-[#d1d9e6] rounded-full mx-auto mb-5 shadow-[inset_1px_1px_2px_#babecc,inset_-1px_-1px_2px_#ffffff]" />
+
+                            <div className="flex items-center justify-between mb-5 border-b border-[#babecc]/50 pb-4">
+                                <h4 className="text-lg font-bold text-[#2d3436] uppercase tracking-wider">
+                                    Table of Contents
+                                </h4>
+                                <button
+                                    onClick={() => setIsTocOpen(false)}
+                                    className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e0e5ec] text-[#4a5568] hover:text-[#ff4757] shadow-[3px_3px_6px_#babecc,-3px_-3px_6px_#ffffff] active:shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff] active:scale-95 transition-all"
+                                    aria-label="Close navigation"
+                                >
+                                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div className="space-y-2 overflow-y-auto pr-1 flex-grow pb-4 scrollbar-thin scrollbar-thumb-[#babecc] scrollbar-track-transparent">
+                                {POLICY_SECTIONS.map((sec) => {
+                                    const isActive = activeSection === sec.id;
+                                    return (
+                                        <button
+                                            key={sec.id}
+                                            onClick={() => scrollToSection(sec.id)}
+                                            className={`w-full text-left text-sm py-3.5 px-4 rounded-xl transition-all duration-200 border-l-4 ${isActive
+                                                ? 'bg-[#d1d9e6] text-[#ff4757] border-[#ff4757] font-bold shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff]'
+                                                : 'text-[#4a5568] hover:text-[#2d3436] hover:bg-[#e0e5ec]/60 border-transparent'
+                                                }`}
+                                        >
+                                            {sec.title}
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+                    </>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

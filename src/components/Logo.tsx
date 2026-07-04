@@ -19,15 +19,17 @@ export function Logo({ className = '', href }: LogoProps) {
             aria-label="DropNotch Home"
         >
             {/* Logo mark */}
-            <img
-                src="/site_logo.png"
-                alt="DropNotch Logo"
-                className="h-10 w-10 object-contain"
-            />
+            <div className="recessed-icon h-12 w-12 rounded-xl">
+                <img
+                    src="/site_logo.png"
+                    alt="DropNotch Logo"
+                    className="h-8 w-8 object-contain"
+                />
+            </div>
             {/* Wordmark */}
-            <span className="text-xl font-bold tracking-tight font-[family-name:var(--font-family-heading)]">
+            <span className="text-xl font-bold tracking-tight font-[family-name:var(--font-family-primary)]">
                 <span className="gradient-text">Drop</span>
-                <span className="text-text-primary">Notch</span>
+                <span className="text-[#2d3436]">Notch</span>
             </span>
         </a>
     );
