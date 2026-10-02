@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Navbar, Hero, Services, Product, About, Contact, Footer, PrivacyPolicy } from './sections';
+import { Navbar, Hero, Services, Product, About, Contact, Footer, PrivacyPolicy, AccountDeletion } from './sections';
 
 export default function App() {
   const [path, setPath] = useState(window.location.pathname);
@@ -27,10 +27,34 @@ export default function App() {
     hash === '#/privacy' ||
     hash === '#/privacy-policy';
 
+  // Check if current path matches account deletion routes
+  const isAccountDeletionRoute =
+    path === '/account-deletion' ||
+    path === '/delete-account' ||
+    hash === '#/account-deletion' ||
+    hash === '#/delete-account';
+
   // Check if we are in mobile app WebView mode (?app=true) in either search query or hash fragment
   const searchParams = new URLSearchParams(window.location.search);
   const hashParams = new URLSearchParams(window.location.hash.split('?')[1] || '');
   const isAppMode = searchParams.get('app') === 'true' || hashParams.get('app') === 'true';
+
+  if (isAccountDeletionRoute) {
+    if (isAppMode) {
+      // Standalone app-like layout for mobile app WebView
+      return <AccountDeletion />;
+    }
+
+    // Standard website layout containing headers and footers
+    return (
+      <div className="relative min-h-screen flex flex-col bg-[#e0e5ec]">
+        <main className="flex-grow">
+          <AccountDeletion />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (isPrivacyRoute) {
     if (isAppMode) {

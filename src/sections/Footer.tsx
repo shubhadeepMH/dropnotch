@@ -19,6 +19,13 @@ export function Footer() {
                     >
                         Privacy Policy
                     </a>
+                    <span className="hidden md:block h-5 w-px bg-[#babecc]"></span>
+                    <a
+                        href="/account-deletion"
+                        className="text-sm text-[#4a5568] hover:text-[#ff4757] transition-colors"
+                    >
+                        Account Deletion
+                    </a>
                 </div>
 
                 <a
